@@ -1,0 +1,21 @@
+{
+  "name": "saas-idea-hunt",
+  "displayName": "SaaS Idea Hunt",
+  "version": "0.1.0",
+  "description": "Evidence-first SaaS opportunity discovery and validation. Mines complaints from review sites, communities, and the labour market; scores them; and drives validation to a paid commitment before a line of code.",
+  "author": {
+    "name": "bucabay",
+    "url": "https://github.com/bucabay"
+  },
+  "homepage": "https://github.com/bucabay/saas-idea-hunt",
+  "repository": "https://github.com/bucabay/saas-idea-hunt",
+  "license": "MIT",
+  "keywords": [
+    "saas",
+    "idea-validation",
+    "customer-discovery",
+    "product-market-fit",
+    "market-research",
+    "opportunity-research"
+  ]
+}

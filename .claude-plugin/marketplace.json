@@ -1,0 +1,16 @@
+{
+  "name": "bucabay-skills",
+  "owner": {
+    "name": "bucabay",
+    "url": "https://github.com/bucabay"
+  },
+  "plugins": [
+    {
+      "name": "saas-idea-hunt",
+      "source": "./",
+      "description": "Evidence-first SaaS opportunity discovery and validation — mine complaints, score them, validate to a paid commitment before building.",
+      "version": "0.1.0",
+      "author": { "name": "bucabay" }
+    }
+  ]
+}
