@@ -1,8 +1,9 @@
 # Mining playbook
 
-Exact sources and queries. Run searches with WebSearch, read individual pages with WebFetch.
-Human pace, public pages only. If a source blocks automated reads, hand the query to the user to
-run in their browser and paste back — do not route around the block.
+Exact sources and queries. Run searches with WebSearch, read individual pages with WebFetch, and
+query documented public APIs directly (Hacker News is the one that matters). Human pace, public
+pages only. If a source blocks automated reads, hand the query to the user to run in their browser
+and paste back — do not route around the block.
 
 ## Complaint-signal phrases
 
@@ -66,14 +67,62 @@ practitioners' subs, r/talesfromtechsupport.
 Signal to look for: 20+ comments, and commenters **agreeing with each other** rather than the
 thread being one person venting. Disagreement threads are also useful — they mark a real tradeoff.
 
-**Hacker News:** `site:news.ycombinator.com "<workflow>"` and the "Ask HN: what do you use for X"
-threads.
+**Hacker News — query the Algolia API, not `site:` search.** A site-scoped web search mostly
+returns story titles. The admissions worth logging — "we do this in a spreadsheet", "I pay a VA for
+it" — are in comments. The public API indexes every story and comment, needs no key, and takes
+exact date ranges. Two endpoints, same parameters:
+
+```
+https://hn.algolia.com/api/v1/search          # relevance, then points, then comment count
+https://hn.algolia.com/api/v1/search_by_date  # newest first
+```
+
+| Parameter | Use |
+|---|---|
+| `query=` | terms; ranked, **not** phrase-matched — a hit may contain only one of them |
+| `tags=story` · `comment` · `ask_hn` · `show_hn` | what to search |
+| `tags=author_whoishiring` | the monthly "Who is hiring" threads |
+| `tags=comment,story_<id>` | every comment in one thread |
+| `numericFilters=created_at_i>...` | Unix timestamp — the recency gate |
+| `numericFilters=points>50,num_comments>20` | **stories only**; comments have neither field |
+| `hitsPerPage=50&page=1` | paging; 10,000 requests/hour per IP |
+
+Encode `>` as `%3E` in a URL, as below. Queries to start from, with `<workflow>`, `<incumbent>`,
+and `<task>` substituted:
+
+```
+# the workaround admission, last 12 months
+.../search?query=<workflow>+manually&tags=comment&numericFilters=created_at_i%3E1767225600&hitsPerPage=50
+
+# threads worth reading end to end
+.../search?query=<incumbent>+alternative&tags=story&numericFilters=num_comments%3E20
+
+# "what do you use for X" — the genre is pre-qualified demand
+.../search?query=what+do+you+use+for+<task>&tags=ask_hn
+
+# then every comment in the best thread, paging with &page=1,2,…
+.../search?tags=comment,story_<id>&hitsPerPage=100
+```
+
+`1767225600` is 2026-01-01; compute your own cutoff rather than reusing it. `author_whoishiring`
+returns the job-seeker threads as well as the hiring ones, so filter on the title. Quote from
+`comment_text`, link the item as `news.ycombinator.com/item?id=<objectID>`, and keep the ≤25-word
+limit. Because multi-word matching is lenient, confirm the phrase is actually present before
+quoting — a hit for "reconcile spreadsheet" may contain both words pages apart.
+
+Two limits. Points and comment counts are attention, not spend: they corroborate a complaint and
+never substitute for the labour signal. And HN skews developer, infra, and startup — a null result
+there is not proof the pain is absent, only that it lives in another community. For regulated
+non-tech verticals, go to the trade forum.
 
 **Industry forums and Slack/Discord:** every vertical has one (Bogleheads for advisors,
 DentalTown, TruckersReport, Spiceworks for IT). These are where the specific, unsearchable
 complaints live.
 
 **Facebook Groups and LinkedIn:** search the incumbent's name plus "frustrated" or "alternative".
+
+A complaint repeated on Reddit and HN is still **one** source type. Three independent types means
+review site + community + labour market, not three communities.
 
 ## § Labor signals
 

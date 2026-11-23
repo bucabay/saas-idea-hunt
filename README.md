@@ -36,7 +36,9 @@ left.
 
 **Phases 0-3 — find it.** Pick boring, regulated B2B categories. Mine 150+ complaint rows from 1-2
 star reviews. Confirm each in three independent source types — review site, community, and the
-labour market. Score the clusters out of 40.
+labour market. Communities are searched for the specific complaint, not the product; Hacker News is
+queried through Algolia's API, which reaches the comments where the workarounds actually get
+described. Score the clusters out of 40.
 
 The labour-market signal is the one most people miss. Job postings for **roles that shouldn't
 exist** — "reconciliation specialist", "data coordinator" at a 50-person company — are pain that's

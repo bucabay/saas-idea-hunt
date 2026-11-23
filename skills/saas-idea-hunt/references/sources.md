@@ -71,6 +71,18 @@ weighted by upvotes, comment volume, and whether independent commenters confirme
   a Calendly link and a gift-card incentive; and the point that having even a slideshow v1 beats
   approaching people at the "just an idea" stage.
 
+## Tooling
+
+- Hacker News Search API (Algolia) — [API documentation](https://hn.algolia.com/api) and the
+  [hn-search source](https://github.com/algolia/hn-search). Verified **2026-11-23**:
+  `/api/v1/search` (relevance, then points, then comments) and `/api/v1/search_by_date` (newest
+  first); tag filters `story`, `comment`, `poll`, `pollopt`, `show_hn`, `ask_hn`, `front_page`,
+  `author_<user>`, `story_<id>`, with tags ANDed by default and ORed inside parentheses; numeric
+  filters on `created_at_i`, `points`, `num_comments`; `page` and `hitsPerPage`; 10,000 requests
+  per hour per IP. Two consequences worth carrying into the playbook: `points` and `num_comments`
+  are story attributes, so combining them with `tags=comment` returns zero hits, and relevance is
+  Algolia's lenient matching rather than phrase search, so a hit may match only one term.
+
 ## Not verified
 
 Reply-rate figures in `outreach.md` are directional orders of magnitude assembled from practitioner

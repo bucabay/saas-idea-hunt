@@ -58,8 +58,10 @@ A complaint on a review site might be one angry admin. It becomes a candidate at
 independent source types**:
 
 1. **Review sites** — the gap, in buyers' words
-2. **Communities** — industry subreddits, trade forums, vertical Slacks. Not r/SaaS. Look for 20+
-   comment threads where people agree with each other
+2. **Communities** — industry subreddits, trade forums, vertical Slacks. Not r/SaaS. Hacker News
+   is the one community searchable in full through its Algolia API, comments included, which is
+   where the workarounds are described. Look for 20+ comment threads where people agree with each
+   other
 3. **The labour market** — the strongest of the three
 
 The labour signal deserves its own paragraph. Search job boards for **roles that shouldn't exist**:

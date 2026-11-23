@@ -130,6 +130,33 @@ the worst part of their day, in detail, unprompted, with no product in the frame
 **Funding data** (Crunchbase and similar) for adjacent startups — read as competitive density and
 timing, not as validation. Heavy recent funding in your exact wedge is a warning, not a signal.
 
+### The one community corpus with a real search API
+
+Almost every community resists programmatic search. Reddit answers automated requests with `403`
+and its search is not reachable from the agent's tools, so Reddit mining stays manual. Hacker News
+is the exception and is worth knowing in detail, because the Algolia index covers every story
+**and every comment**, full text, with second-level timestamps, points, and comment counts.
+
+That matters because the best lines are in comments, not posts. A comment that a bookkeeper is
+paid monthly to reconcile two systems is a spend record sitting at reply 14 of a three-year-old
+thread. A `site:` search will not find it; the API will, and it will also show whether anyone
+replied to agree.
+
+Use it for:
+
+- **Workaround admissions** — `manually`, `spreadsheet`, `had to hire`, `two systems`, `export to`.
+- **Incumbent threads** — launches, outages, "we switched off X", each dated.
+- **Who is hiring** — the monthly threads are a searchable labour sample, but a developer-heavy
+  one: a supplement to Indeed and LinkedIn for tech-adjacent roles, weak evidence in regulated
+  non-tech verticals.
+- **Currency checks** — a date range settles whether the gap still exists, which a review site
+  cannot do.
+
+What it cannot do: points are attention, not budget. An 800-point rant is a hypothesis. Cite the
+comment that describes a transaction and keep the popularity as context. Exact query patterns are
+in `mining-playbook.md` § Triangulation; the API's parameters and limits are recorded in
+`sources.md`.
+
 ---
 
 ## What synthetic personas are and are not for
@@ -161,7 +188,8 @@ Phases 0-3, deepened. Output is `templates/desk-dossier.md`.
 
 1. **Frame** (Phase 0, unchanged) — categories, buyer job title, size band.
 2. **Mine** (Phase 1) — review sites and app stores, 150+ rows.
-3. **Triangulate** (Phase 2) — communities, Upwork, job boards.
+3. **Triangulate** (Phase 2) — communities, Upwork, job boards. Hacker News comments via Algolia
+   are the one community corpus you can query directly, by date and thread (`mining-playbook.md`).
 4. **Public record sweep** (new) — Tier 1 sources. Procurement, feature-request boards with vote
    counts, freelance/BPO pricing, incumbent pricing history via Wayback.
 5. **Quantify** (new) — Tier 2. Establishment counts × price anchor = ceiling. Occupation counts ×
