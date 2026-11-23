@@ -1,7 +1,7 @@
 # Reaching people
 
-How to actually get a stranger in a specific job to spend 20 minutes with you. Claude drafts;
-the user sends. Claude never contacts anyone.
+How to actually get a stranger in a specific job to spend 20 minutes with you. The agent drafts;
+the user sends. The agent never contacts anyone.
 
 The conversation itself — what to ask once you're on the call — is `interview-guide.md`. This file
 is only about getting there.

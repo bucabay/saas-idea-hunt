@@ -30,7 +30,7 @@ whenever a decision here is ambiguous.
    key, and is not scraping. Do not build bulk scrapers against G2/Capterra/Upwork — it breaks their
    terms and poisons the data. If a source blocks automated reads, hand the query to the user to run
    in their browser and paste back.
-6. **Claude researches; the human sells.** Claude never sends DMs, posts to communities, emails
+6. **The agent researches; the human sells.** The agent never sends DMs, posts to communities, emails
    prospects, or publishes anything. It drafts; the user sends.
 7. **Time-box every phase.** Each phase has a kill criterion. Hitting it means stop, not push on.
 
@@ -158,7 +158,7 @@ Each brief must answer, in writing:
 Two separate skills, two separate files: **getting the meeting** is
 `references/outreach.md` (channels ranked by yield, scripts, the ladder, results log), and
 **running the conversation** is `references/interview-guide.md` (Mom Test rules, question bank,
-Customer Problem Stack Ranking, what to record). Claude drafts, the user sends.
+Customer Problem Stack Ranking, what to record). The agent drafts, the user sends.
 
 Use the **commitment ladder**, not a yes/no question:
 

@@ -161,7 +161,7 @@ in `mining-playbook.md` § Triangulation; the API's parameters and limits are re
 
 ## What synthetic personas are and are not for
 
-You can have Claude role-play "an operations manager at a mid-size freight brokerage" and interview
+You can have the agent role-play "an operations manager at a mid-size freight brokerage" and interview
 it. Be clear about what that is.
 
 **Legitimate uses — rehearsal and hypothesis generation:**

@@ -1,8 +1,33 @@
 # Install
 
-Three ways, depending on how you want it to live.
+The skill is plain Markdown in the [Agent Skills format](https://agentskills.io/specification) —
+the same files work in Claude Code, Codex, Gemini CLI, Cursor, Augment, and other runtimes. Four
+ways to install, from easiest down.
 
-## 1. Plugin (recommended — keeps it updatable)
+## 1. With a prompt (recommended — any agent)
+
+Paste into any AI agent with file access:
+
+```
+install the skill at https://github.com/bucabay/saas-idea-hunt
+```
+
+The agent reads [`INSTALL.md`](../INSTALL.md), copies the skill into that agent's skills
+directory, and confirms. Then say:
+
+```
+help me find a saas idea
+```
+
+If your agent can't fetch URLs, clone the repo first and paste the local path instead:
+
+```sh
+git clone https://github.com/bucabay/saas-idea-hunt.git
+```
+
+then tell the agent `install the skill from /path/to/saas-idea-hunt`.
+
+## 2. Claude Code plugin (updatable, version-pinnable)
 
 Inside Claude Code:
 
@@ -24,34 +49,41 @@ Pin to a tag if you want a fixed version:
 claude plugin marketplace add bucabay/saas-idea-hunt@v0.1.0
 ```
 
-## 2. Plain skill, available everywhere
+## 3. Manual, per runtime
+
+Clone once, then copy the skill directory to wherever your runtime looks for skills:
 
 ```sh
 git clone https://github.com/bucabay/saas-idea-hunt.git
-ln -s "$PWD/saas-idea-hunt/skills/saas-idea-hunt" ~/.claude/skills/saas-idea-hunt
 ```
 
-A symlink means `git pull` updates the skill in place. Copy it instead if you'd rather pin it:
+| Runtime | Copy to (all projects) | Copy to (one project) |
+|---|---|---|
+| Claude Code | `~/.claude/skills/` | `.claude/skills/` |
+| Codex · Gemini CLI · Cursor · Augment · other Agent Skills runtimes | `~/.agents/skills/` | `.agents/skills/` |
+| Client-specific alternates | `~/.codex/skills/` · `~/.gemini/skills/` · `~/.cursor/skills/` | `.codex/skills/` · `.gemini/skills/` · `.cursor/skills/` |
 
 ```sh
+# Claude Code, all projects
 cp -R saas-idea-hunt/skills/saas-idea-hunt ~/.claude/skills/
+
+# Any Agent Skills runtime, all projects
+cp -R saas-idea-hunt/skills/saas-idea-hunt ~/.agents/skills/
+
+# One project only
+mkdir -p .agents/skills && cp -R saas-idea-hunt/skills/saas-idea-hunt .agents/skills/
 ```
 
-## 3. Single project only
-
-```sh
-mkdir -p .claude/skills
-cp -R /path/to/saas-idea-hunt/skills/saas-idea-hunt .claude/skills/
-```
-
-Useful when you want the research workspace (`research/<slug>/`) to live inside one repo.
+Updates: `git pull`, then copy over the old directory. (Or symlink instead of copying —
+`ln -s "$PWD/saas-idea-hunt/skills/saas-idea-hunt" ~/.claude/skills/` — so `git pull` updates the
+skill in place.)
 
 ## Verify
 
-Start Claude Code and run `/saas-idea-hunt`, or just say "help me find a saas idea". If the skill
-loaded, it will ask you for categories and a buyer job title before doing anything else.
+Start your agent and say "help me find a saas idea". If the skill loaded, it will ask you for
+categories and a buyer job title before doing anything else.
 
-## Using it without Claude Code
+## Using it without an agent
 
 Everything here is plain Markdown. The method works read-by-a-human:
 
