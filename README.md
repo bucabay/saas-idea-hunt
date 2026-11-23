@@ -1,21 +1,46 @@
 # SaaS Idea Hunt
 
-A Claude Code skill for finding and validating SaaS opportunities from evidence rather than
+An **agent skill** for finding and validating SaaS opportunities from evidence rather than
 brainstorming.
 
 Mines complaints from review sites, industry communities, and the labour market. Scores them
 against an eight-factor rubric. Then drives validation to a **paid commitment** before a line of
 code gets written — and tells you to stop when the evidence doesn't support building.
 
+Works in any agent that loads skills: Claude Code, Codex, Gemini CLI, Cursor, Augment, and others
+following the [Agent Skills format](https://agentskills.io/specification).
+
+## Install — one prompt
+
+Paste into any AI agent with file access:
+
+```
+install the skill at https://github.com/bucabay/saas-idea-hunt
+```
+
+The agent reads [`INSTALL.md`](INSTALL.md) and drops the skill into that agent's skills directory.
+That's the whole install — it's plain Markdown, the same files for every runtime.
+
+Then just say:
+
+```
+help me find a saas idea
+```
+
+If your agent can't fetch URLs itself, clone the repo and give it the path — the instructions
+cover that too.
+
+### Prefer a command line?
+
+Claude Code plugin (updatable, version-pinnable):
+
 ```
 /plugin marketplace add bucabay/saas-idea-hunt
 /plugin install saas-idea-hunt@bucabay-skills
 ```
 
-Then: `/saas-idea-hunt`, or just say *"help me find a saas idea"*.
-
-Other install options — plain skill, single project, or reading it as documents without Claude
-Code — in [`docs/install.md`](docs/install.md).
+Manual installs for every runtime, per-project installs, and using the method without an agent:
+[`docs/install.md`](docs/install.md).
 
 ## The one rule
 
@@ -108,6 +133,8 @@ skills/saas-idea-hunt/
     mvp-scope.md                one feature, priced, with kill criteria
     desk-dossier.md             the public-data dossier + irreducible unknowns
 
+INSTALL.md  instructions for the installing agent (the prompt install)
+AGENTS.md   one pointer for agents that browse the repo
 docs/       method.md (narrative walkthrough), install.md
 research/   the audit trail — sources, findings, and what was rejected
 ```
